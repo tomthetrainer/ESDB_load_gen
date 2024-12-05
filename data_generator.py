@@ -6,11 +6,24 @@ import json
 import time
 import argparse
 
+#######################
+#
 # Create an ArgumentParser object
-parser = argparse.ArgumentParser(description='This script does something.') 
-parser.add_argument('-n', '--number', required=False, default=100, help='Integer-- size of the loop')
+# Optional number of events
+# Optional filename to write benchmark to
+#
+#########################
+
+parser = argparse.ArgumentParser(description='This script generates a configurable load on the database') 
+parser.add_argument('-n', '--number', required=False, default=100, help='Optional: Integer-- Number of Events to Append')
+parser.add_argument('-f', '--file', required=False, help='Optional: String -- Filename to write results to')
+
 args = parser.parse_args() 
-print("Number of Events:", args.number)
+
+print('Number of Events:', args.number)
+
+if args.file:
+    print(f'Writing to {args.file}')
 
 loop_size = int(args.number)
 #######################################################
@@ -89,5 +102,9 @@ end_time = time.time()
 execution_time = end_time - start_time
 
 print("Execution time:", execution_time)    
+
+if args.file:
+    with open(args.file, "a") as f:
+        f.write(f'Execution time:, {execution_time}\n')
 
 client.close() 
