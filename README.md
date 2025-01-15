@@ -1,68 +1,15 @@
-# EventStore Data Generator
+# Contents of this directory
 
-This project provides a simple python script to append x number of records to EventStoreDB
+This directory has the following folders:
 
-## Assumptions
+* data_generator
 
-The application assumes an unsecured cluster running locally. 
+Contains a configurable data generator that can append a configurable number of events to EventStoreDB and record how long the write process took.
 
-## Dependencies
+* Skills_test_how_many_events
 
-The included requirements.txt file can be used to set up your python virtual env. 
+Contains a lab that generates data in EventStoreDB and the student is challenged to write a solution to determine the total number of events in the cluster
 
-Create a venv
-`python -m venv .venv`
+* Skills_test_how_many_streams
 
-Activate it
-`source .venv/bin/activate`
-
-Or windows powershell Activate
-
-`\venv\Scripts\activate.ps1`
-
-Load dependencies
-
-`pip install -r requirements.txt`
-
-## How to use
-
-To append 100 events, simply run the data_generator.py
-
-`python data_generator.py`
-
-To append a custom number of events.
-
-`python data_generator.py -n 10`
-
-To write the results to a file in addition to the console.
-
-`python data_generator.py -f event_benchmark.txt `
-
-To print help
-
-`python data_generator.py -h`
-
-## Useful Experiments
-
-Compare performance with projections enabled/disabled.
-
-Pass a large number of events through and use to monitor the server load in the dashboard of the webui.
-
-Modify the code and compare performance of secure vs insecure cluster. 
-
-Note we DO NOT recommend running an insecure cluster in production.
-
-Modify the script to batch events in batches of 10, or 100 and compare throughput to non-batched. 
-
-## start_cluster.sh
-
-This is a shell script that will call `docker run` esdb-node, a docker containter that EventStore provides. 
-
-This script was designed for running the code in Github Codespaces, but it will also work on a machine with docker installed.
-
-Note that the start_cluster.sh is designed to refresh the cluster if it has already been started. Running the shell command twice will stop and remove the previous docker instance. 
-
-
-
-
-
+Contains a lab that generates data in EventStoreDB and the student is challenged to write a solution that determines the total number of streams present in the cluster
